@@ -12,6 +12,8 @@ public class TemaService implements ITemaService{
 
     @Autowired
     private ITemaRepository iTemaRep;
+    @Autowired
+    private ICursoService cursoServ;
 
     @Override
     public void saveTema(Tema tema) {

@@ -1,5 +1,6 @@
 package com.api_rest.estpro.service;
 
+import com.api_rest.estpro.dto.CursoTemaDTO;
 import com.api_rest.estpro.model.Curso;
 
 import java.util.Date;
@@ -18,5 +19,9 @@ public interface ICursoService {
     public void editCurso(Long id, String nuevoNombre, String nuevaMod, Date nuevaFecha);
 
     public void editCurso(Curso curso);
+
+    public CursoTemaDTO temasPorCurso(Long idCurso);
+
+    public List<Curso> getCursosJava();
 
 }

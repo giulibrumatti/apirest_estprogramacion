@@ -6,7 +6,7 @@ import com.api_rest.estpro.service.ITemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.List;
 
 @RestController
 public class TemaController {
@@ -14,10 +14,16 @@ public class TemaController {
     private ITemaService iTemaServ;
 
     @PostMapping("/temas/crear")
-    public String crearTema(Tema tema){
+    public String crearTema(@RequestBody Tema tema){
         iTemaServ.saveTema(tema);
-        return "El tema fue creado con exito";
+        return "El tema fue creado con éxito";
     }
+
+    @GetMapping("/temas/traer")
+    public List<Tema> getCursos(){
+        return iTemaServ.getTemas();
+    }
+
 
     @PutMapping("/temas/editar/{id}")
     public Tema editarCurso(@PathVariable("id") Long id,
@@ -33,6 +39,6 @@ public class TemaController {
     @PutMapping("/temas/editar")
     public Tema editarCurso(@RequestBody Tema tema){
         iTemaServ.editTema(tema);
-        return iTemaServ.findTema(tema.getId_tema());
+        return iTemaServ.findTema(tema.getIdTema());
     }
 }

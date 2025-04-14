@@ -1,5 +1,6 @@
 package com.api_rest.estpro.controller;
 
+import com.api_rest.estpro.dto.CursoTemaDTO;
 import com.api_rest.estpro.model.Curso;
 import com.api_rest.estpro.model.Tema;
 import com.api_rest.estpro.service.ICursoService;
@@ -34,19 +35,14 @@ public class CursoController {
         return iCursoServ.getCursos();
     }
 
-    @GetMapping("/cursos/traerTemas/{id}")
-    public List<Tema> getTemasDeCurso(@PathVariable("id") Long id){
-        Curso curso = iCursoServ.findCurso(id);
-        List<Tema> listaSalida = curso.getListaTemas();
-        return listaSalida;
+    @GetMapping("/cursos/temas/{id}")
+    public CursoTemaDTO getTemasDeCurso(@PathVariable Long id){
+        return iCursoServ.temasPorCurso(id);
     }
 
     @GetMapping("/cursos/buscarJava")
     public List<Curso> getCursosJava(){
-        List<Curso> cursos = iCursoServ.getCursos();
-        List<Curso> listaSalida = cursos.stream().filter(curso -> curso.getNombre()
-                .toLowerCase().contains("java")).collect(Collectors.toList());
-        return listaSalida;
+        return iCursoServ.getCursosJava();
      }
 
     @PutMapping("/cursos/editar/{id}")
